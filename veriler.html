@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canlı zamanlı USD kuru</title>
+</head>
+
+<body>
+    <div id="currency">
+
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script>
+        $(function () {
+            var socket = io();
+            socket.on('currency-data', function (data) {
+                $("#currency").html(
+                    `Dolar kuru: ${data.ForexSelling}<br>Yenilendiği tarih: ${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`
+                )
+            });
+        });
+    </script>
+</body>
+
+</html>
